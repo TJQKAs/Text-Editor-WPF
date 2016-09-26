@@ -1,0 +1,62 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ToolBar Height="35" Grid.Row="0">
+            <Button x:Name="openBtn" Click="openBtn_Click">
+                <Image Source="3.png" />
+            </Button>
+            <Separator />
+            <Button x:Name="saveBtn" Click="saveBtn_Click">
+                <Image Source="7.png" />
+            </Button>
+            <Separator />
+            <Button x:Name="printBtn" Click="printBtn_Click">
+                <Image Source="14.png" />
+            </Button>
+            <Separator />
+            <ToggleButton x:Name="btnBold" Command="EditingCommands.ToggleBold" Width="30">Ж</ToggleButton>
+            <Separator />
+            <ToggleButton x:Name="btnItalic" Command="EditingCommands.ToggleItalic" Width="30">К</ToggleButton>
+            <Separator />
+            <ToggleButton x:Name="btnUnderline" Command="EditingCommands.ToggleUnderline"  Width="30">
+                <ToggleButton.Content>
+                    <TextBlock TextDecorations="Underline">Ч</TextBlock>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <Separator />
+            <ComboBox IsEditable="False" x:Name="fontCombobox" Width="100" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontFamily="{Binding}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Separator />
+            <ComboBox x:Name="fontSizeBox" IsEditable="True" TextBoxBase.TextChanged="ComboBox_TextChanged">
+                
+            </ComboBox>
+        </ToolBar>
+        
+        <RichTextBox x:Name="textEditor" Grid.Row="2" SelectionChanged="textEditor_SelectionChanged">
+            <RichTextBox.Resources>
+
+                <Style TargetType="{x:Type Paragraph}">
+
+                    <Setter Property="Margin" Value="0"/>
+
+            </Style>
+
+        </RichTextBox.Resources>
+        </RichTextBox>
+    </Grid>
+</Window>
